@@ -51,23 +51,23 @@ public class Main {
         //Tworzenie ścian planszy
         for (int i = 0; i < SIZE; i++) {
             buttons[i][0].setBackground((Color.BLACK));
-            cellBlock[i][0] = 1;
+            cellBlock[i][0] = 2;
             buttons[i][SIZE - 1].setBackground((Color.BLACK));
-            cellBlock[i][SIZE - 1] = 1;
+            cellBlock[i][SIZE - 1] = 2;
             buttons[0][i].setBackground((Color.BLACK));
-            cellBlock[0][i] = 1;
+            cellBlock[0][i] = 2;
             buttons[SIZE - 1][i].setBackground((Color.BLACK));
-            cellBlock[SIZE - 1][i] = 1;
+            cellBlock[SIZE - 1][i] = 2;
         }
 
 
 
         buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
         buttons[y + 2][x].setBackground((Color.DARK_GRAY));
-        cellBlock[y + 1][x] = 1;
-        cellBlock[y + 2][x] = 1;
-        cellBlock[y][x+1] = 1;
-        cellBlock[y][x-1] = 1;
+        cellBlock[y + 1][x] = 2;
+        cellBlock[y + 2][x] = 2;
+        cellBlock[y][x+1] = 2;
+        cellBlock[y][x-1] = 2;
         stosx.push(x);
         stosy.push(y);
         y += 2;
@@ -81,12 +81,10 @@ public class Main {
             if ((liczba == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
                 buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y + 2][x].setBackground((Color.DARK_GRAY));
-                cellBlock[y + 1][x] = 1;
-                cellBlock[y + 2][x] = 1;
-                cellBlock[y][x + 1] = 1;
-                cellBlock[y][x - 1] = 1;
-//                        buttons[y][x+1].setBackground((Color.BLACK));
-//                        buttons[y][x-1].setBackground((Color.BLACK));
+                cellBlock[y + 1][x] = 2;
+                cellBlock[y + 2][x] = 2;
+                cellBlock[y][x + 1] = 2;
+                cellBlock[y][x - 1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 y += 2;
@@ -95,12 +93,10 @@ public class Main {
             if ((liczba == 2) && (cellBlock[y - 2][x] == 0)) { //w górę
                 buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y - 2][x].setBackground((Color.DARK_GRAY));
-                cellBlock[y - 1][x] = 1;
-                cellBlock[y - 2][x] = 1;
-                cellBlock[y][x + 1] = 1;
-                cellBlock[y][x - 1] = 1;
-//                        buttons[y][x+1].setBackground((Color.BLACK));
-//                        buttons[y][x-1].setBackground((Color.BLACK));
+                cellBlock[y - 1][x] = 2;
+                cellBlock[y - 2][x] = 2;
+                cellBlock[y][x + 1] = 2;
+                cellBlock[y][x - 1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 y -= 2;
@@ -109,12 +105,10 @@ public class Main {
             if ((liczba == 3) && (cellBlock[y][x + 2] == 0)) { //w prawo
                 buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x + 2].setBackground((Color.DARK_GRAY));
-                cellBlock[y][x + 1] = 1;
-                cellBlock[y][x + 2] = 1;
-                cellBlock[y + 1][x] = 1;
-                cellBlock[y - 1][x] = 1;
-//                        buttons[y+1][x].setBackground((Color.BLACK));
-//                        buttons[y-1][x].setBackground((Color.BLACK));
+                cellBlock[y][x + 1] = 2;
+                cellBlock[y][x + 2] = 2;
+                cellBlock[y + 1][x] = 2;
+                cellBlock[y - 1][x] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 x += 2;
@@ -122,12 +116,10 @@ public class Main {
             if ((liczba == 4) && (cellBlock[y][x - 2] == 0)) { //w lewo
                 buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x - 2].setBackground((Color.DARK_GRAY));
-                cellBlock[y][x - 1] = 1;
-                cellBlock[y][x - 2] = 1;
-                cellBlock[y + 1][x] = 1;
-                cellBlock[y - 1][x] = 1;
-//                        buttons[y+1][x].setBackground((Color.BLACK));
-//                        buttons[y-1][x].setBackground((Color.BLACK));
+                cellBlock[y][x - 1] = 2;
+                cellBlock[y][x - 2] = 2;
+                cellBlock[y + 1][x] = 2;
+                cellBlock[y - 1][x] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 x -= 2;
@@ -135,7 +127,7 @@ public class Main {
             if(stosx.empty()) {
                 break;
             }
-            if ((cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1)) {
+            if ((cellBlock[y][x - 2] != 0) && (cellBlock[y][x + 2] != 0) && (cellBlock[y - 2][x] != 0) && (cellBlock[y + 2][x] != 0)) {
                 x = stosx.pop();
                 y = stosy.pop();
                 //                System.out.print("Zawracam, x = " + stosx.pop());
@@ -157,6 +149,14 @@ public class Main {
             int liczba = (random.nextInt(15)+1)*2;
             if((deadEnd[SIZE-3][i] == 1) && (SIZE-3 == liczba)){
                 buttons[SIZE-2][i].setBackground(Color.YELLOW);
+            }
+        }
+
+        for(int i = 0; i < SIZE; i++){
+            for(int j = 0; j < SIZE; j++){
+                if((cellBlock[i][j] != 1)){
+                    buttons[i][j].setBackground(Color.BLACK);
+                }
             }
         }
 
