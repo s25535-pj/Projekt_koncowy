@@ -62,28 +62,32 @@ public class Main {
             int liczba = 1;
             switch (liczba) {
 
-                case 1:
+                case 1: //w dół
                     if (cellBlock[y + 1][x] == 0) {
                         buttons[y + 1][x].setBackground((Color.pink));
                         cellBlock[y + 1][x] = 1;
+                        cellBlock[y][x+1] = 1;
+                        cellBlock[y][x-1] = 1;
+                        buttons[y][x+1].setBackground((Color.BLACK));
+                        buttons[y][x-1].setBackground((Color.BLACK));
                         y += 1;
                     }
                     break;
-                case 2:
+                case 2://w góre
                     if (cellBlock[y - 1][x] == 0) {
                         buttons[y - 1][x].setBackground((Color.pink));
                         cellBlock[y - 1][x] = 1;
                         y -= 1;
                     }
                     break;
-                case 3:
+                case 3://w prawo
                     if (cellBlock[y][x + 1] == 0) {
                         buttons[y][x + 1].setBackground((Color.pink));
                         cellBlock[y][x + 1] = 1;
                         x += 1;
                     }
                     break;
-                case 4:
+                case 4://w lewo
                     if (cellBlock[y][x - 1] == 0) {
                         buttons[y][x - 1].setBackground((Color.pink));
                         cellBlock[y][x - 1] = 1;
