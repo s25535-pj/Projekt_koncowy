@@ -60,19 +60,21 @@ public class Main {
         }
 
 
-        int z = 1000;
+
         buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
-                        buttons[y + 2][x].setBackground((Color.DARK_GRAY));
-                        cellBlock[y + 1][x] = 1;
-                        cellBlock[y + 2][x] = 1;
-                        cellBlock[y][x+1] = 1;
-                        cellBlock[y][x-1] = 1;
-                        stosx.push(x);
-                        stosy.push(y);
-                        y += 2;
+        buttons[y + 2][x].setBackground((Color.DARK_GRAY));
+        cellBlock[y + 1][x] = 1;
+        cellBlock[y + 2][x] = 1;
+        cellBlock[y][x+1] = 1;
+        cellBlock[y][x-1] = 1;
+        stosx.push(x);
+        stosy.push(y);
+        y += 2;
+
+        int z = 1000;
         while(z > 0) {
             z--;
-            Thread.sleep(100);
+            Thread.sleep(10);
             int liczba = random.nextInt(4 - 1 + 1) + 1;
 
             if ((liczba == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
@@ -129,20 +131,18 @@ public class Main {
                 stosy.push(y);
                 x -= 2;
             }
-            if (!stosx.empty() && (cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1))  {
-                System.out.print("Zawracam, x = " + stosx.pop());
-                System.out.println(", y = " + stosy.pop());
+            if (!stosx.empty() && (cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1)) {
+                x = stosx.pop();
+                y = stosy.pop();
+                //                System.out.print("Zawracam, x = " + stosx.pop());
+                //                System.out.println(", y = " + stosy.pop());
+                buttons[y][x].setBackground(Color.GREEN);
             }
         }
 
         //Pokoloruj start
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
-
-        while(!stosx.empty()) {
-            System.out.println(stosx.pop() + "   " + stosy.pop());
-        }
-
 
 //        for (int i = 0; i< 30; i++) {
 //            for (int j= 0; j < 30; j++) {
