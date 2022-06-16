@@ -72,6 +72,7 @@ public class Main {
         stosy.push(y);
         y += 2;
 
+
         int z = 1000;
         while(true) {
             Thread.sleep(5);
@@ -140,9 +141,9 @@ public class Main {
                 //                System.out.print("Zawracam, x = " + stosx.pop());
                 //                System.out.println(", y = " + stosy.pop());
                 buttons[y][x].setBackground(Color.GREEN);
-                if(y == 28){
-                    deadEnd[y][x] = 1;
+                if(y == SIZE-3){
                     buttons[y][x].setBackground(Color.CYAN);
+                    deadEnd[y][x] = 1;
                 }
 
             }
@@ -153,9 +154,9 @@ public class Main {
         buttons[1][start].setBackground(Color.RED);
 
         for(int i = 0; i < SIZE; i++){
-            if(deadEnd[SIZE-3][i] == 1){
-                buttons[SIZE-3][i].setBackground(Color.YELLOW);
-                break;
+            int liczba = (random.nextInt(15)+1)*2;
+            if((deadEnd[SIZE-3][i] == 1) && (SIZE-3 == liczba)){
+                buttons[SIZE-2][i].setBackground(Color.YELLOW);
             }
         }
 
