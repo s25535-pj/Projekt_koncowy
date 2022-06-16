@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         //Rozmiar planszy, blokada pól
-        int SIZE = 30;
+        int SIZE = 31;
         int[][] cellBlock = new int[SIZE][SIZE];
         Random random = new Random();
         Stack<Integer> stosx = new Stack<Integer>();
@@ -18,8 +18,9 @@ public class Main {
 
         //random.nextInt(max - min + 1) + min max = 29 min = 1, rogi planszy nie mogą być startem
         int start = random.nextInt(SIZE - 2) + 1;
+        start = 16;
         int x = start;
-        int y = 1;
+        int y = 0;
         //Wyznaczenie pozycji startowej
 
         System.out.println("Start z pozycji x = " + start + ", y = 0");
@@ -60,91 +61,80 @@ public class Main {
 
 
         int z = 1000;
-        while(z > 0) {
-            z--;
-            int liczba = random.nextInt(4 - 1 + 1)+1;
-            switch (liczba) {
-
-                case 1: //w dół
-                    if ((cellBlock[y + 1][x] == 0) && (cellBlock[y + 2][x] == 0)) {
-                        buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
+        buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
                         buttons[y + 2][x].setBackground((Color.DARK_GRAY));
                         cellBlock[y + 1][x] = 1;
                         cellBlock[y + 2][x] = 1;
                         cellBlock[y][x+1] = 1;
                         cellBlock[y][x-1] = 1;
-//                        buttons[y][x+1].setBackground((Color.BLACK));
-//                        buttons[y][x-1].setBackground((Color.BLACK));
                         stosx.push(x);
                         stosy.push(y);
                         y += 2;
+        while(z > 0) {
+            z--;
+            Thread.sleep(100);
+            int liczba = random.nextInt(4 - 1 + 1) + 1;
 
-                    }
-//                    else{
-//                        System.out.print("Zawracam, x = "+stosx.pop());
-//                        System.out.println(", y = "+stosy.pop());
-//                    }
-                    break;
-                case 2://w góre
-                    if ((cellBlock[y - 1][x] == 0) && cellBlock[y - 2][x] == 0) {
-                        buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
-                        buttons[y - 2][x].setBackground((Color.DARK_GRAY));
-                        cellBlock[y - 1][x] = 1;
-                        cellBlock[y - 2][x] = 1;
-                        cellBlock[y][x+1] = 1;
-                        cellBlock[y][x-1] = 1;
+            if ((liczba == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
+                buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
+                buttons[y + 2][x].setBackground((Color.DARK_GRAY));
+                cellBlock[y + 1][x] = 1;
+                cellBlock[y + 2][x] = 1;
+                cellBlock[y][x + 1] = 1;
+                cellBlock[y][x - 1] = 1;
 //                        buttons[y][x+1].setBackground((Color.BLACK));
 //                        buttons[y][x-1].setBackground((Color.BLACK));
-                        stosx.push(x);
-                        stosy.push(y);
-                        y -= 2;
+                stosx.push(x);
+                stosy.push(y);
+                y += 2;
 
-                    }
-//                    else{
-//                        System.out.print("Zawracam, x = "+stosx.pop());
-//                        System.out.println(", y = "+stosy.pop());
-//                    }
-                    break;
-                case 3://w prawo
-                    if ((cellBlock[y][x + 1] == 0) && cellBlock[y][x + 2] == 0) {
-                        buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
-                        buttons[y][x + 2].setBackground((Color.DARK_GRAY));
-                        cellBlock[y][x + 1] = 1;
-                        cellBlock[y][x + 2] = 1;
-                        cellBlock[y+1][x] = 1;
-                        cellBlock[y-1][x] = 1;
+            }
+            if ((liczba == 2) && (cellBlock[y - 2][x] == 0)) { //w górę
+                buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
+                buttons[y - 2][x].setBackground((Color.DARK_GRAY));
+                cellBlock[y - 1][x] = 1;
+                cellBlock[y - 2][x] = 1;
+                cellBlock[y][x + 1] = 1;
+                cellBlock[y][x - 1] = 1;
+//                        buttons[y][x+1].setBackground((Color.BLACK));
+//                        buttons[y][x-1].setBackground((Color.BLACK));
+                stosx.push(x);
+                stosy.push(y);
+                y -= 2;
+            }
+
+            if ((liczba == 3) && (cellBlock[y][x + 2] == 0)) { //w prawo
+                buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
+                buttons[y][x + 2].setBackground((Color.DARK_GRAY));
+                cellBlock[y][x + 1] = 1;
+                cellBlock[y][x + 2] = 1;
+                cellBlock[y + 1][x] = 1;
+                cellBlock[y - 1][x] = 1;
 //                        buttons[y+1][x].setBackground((Color.BLACK));
 //                        buttons[y-1][x].setBackground((Color.BLACK));
-                        stosx.push(x);
-                        stosy.push(y);
-                        x += 2;
-                    }
-//                    else{
-//                        System.out.print("Zawracam, x = "+stosx.pop());
-//                        System.out.println(", y = "+stosy.pop());
-//                    }
-                    break;
-                case 4://w lewo
-                    if ((cellBlock[y][x - 1] == 0) && (cellBlock[y][x - 2] == 0)) {
-                        buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
-                        buttons[y][x - 2].setBackground((Color.DARK_GRAY));
-                        cellBlock[y][x - 1] = 1;
-                        cellBlock[y][x - 2] = 1;
-                        cellBlock[y+1][x] = 1;
-                        cellBlock[y-1][x] = 1;
+                stosx.push(x);
+                stosy.push(y);
+                x += 2;
+            }
+            if ((liczba == 4) && (cellBlock[y][x - 2] == 0)) { //w lewo
+                buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
+                buttons[y][x - 2].setBackground((Color.DARK_GRAY));
+                cellBlock[y][x - 1] = 1;
+                cellBlock[y][x - 2] = 1;
+                cellBlock[y + 1][x] = 1;
+                cellBlock[y - 1][x] = 1;
 //                        buttons[y+1][x].setBackground((Color.BLACK));
 //                        buttons[y-1][x].setBackground((Color.BLACK));
-                        stosx.push(x);
-                        stosy.push(y);
-                        x -= 2;
-                    }
-//                    else{
-//                        System.out.print("Zawracam, x = "+stosx.pop());
-//                        System.out.println(", y = "+stosy.pop());
-//                    }
-                    break;
+                stosx.push(x);
+                stosy.push(y);
+                x -= 2;
+            }
+            if (!stosx.empty() && (cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1))  {
+                System.out.print("Zawracam, x = " + stosx.pop());
+                System.out.println(", y = " + stosy.pop());
             }
         }
+
         //Pokoloruj start
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
