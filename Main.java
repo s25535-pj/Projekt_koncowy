@@ -6,21 +6,21 @@ public class Main {
         System.out.println("Dziala");
 
         JFrame frame = new JFrame();//okno
+        frame.setSize(500,500); //szerokosc, wysokosc okna
+        frame.setLayout(new GridLayout(3, 3));//menedżer ułożenia przycisków
 
         frame.add(new JButton("1"));
         frame.add(new JButton("2"));
         frame.add(new JButton("3"));
         frame.add(new JButton("4"));
         frame.add(new JButton("5"));
-//        JButton button = new JButton("Click!"); //przycisk
-//        JButton button2 = new JButton("Pac!"); //przycisk2
-//        button.setBounds(130,100,100,40); //x, y, szerokość, wysokość
-//
-//        frame.add(button);
-//        frame.add(button2);
+        frame.add(new JButton("6"));
+        frame.add(new JButton("7"));
+        frame.add(new JButton("8"));
+        frame.add(new JButton("9"));
 
-        frame.setSize(400,500); //szerokosc, wysokosc
-        frame.setLayout(new GridLayout(10, 10));//menedżer "layoutu"
+
         frame.setVisible(true);//ramka ma być widoczna
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
