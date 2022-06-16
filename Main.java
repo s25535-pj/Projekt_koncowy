@@ -157,7 +157,8 @@ public class Main {
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
 
-        int liczba = (random.nextInt(13)+1)*2;
+        int liczba = (random.nextInt(12)+2)*2;
+        System.out.println(liczba);
         for(int i = 0; i < SIZE; i++){
             if((deadEnd[SIZE-3][liczba] == 1)){
                 buttons[SIZE-2][liczba].setBackground(Color.YELLOW);
@@ -166,6 +167,7 @@ public class Main {
             }
         }
 
+        //Wykończenie planszy
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
                 if((cellBlock[i][j] == 0) || cellBlock[i][j] == 2){
@@ -178,17 +180,6 @@ public class Main {
         }
 
 
-//        for (int i = 0; i< 30; i++) {
-//            for (int j= 0; j < 30; j++) {
-//                if(cellBlock[i][j] == 0){
-//                    buttons[i][j].setBackground((Color.GRAY));
-//                }
-//                Thread.sleep(10);
-//            }
-//        }
-    }
-
-    void createCell(int x, int y){
 
     }
 }
