@@ -11,6 +11,14 @@ public class Main {
         //Rozmiar planszy, blokada pól
         int SIZE = 30;
         int[][] cellBlock = new int[SIZE][SIZE];
+        Random random = new Random();
+
+        //random.nextInt(max - min + 1) + min max = 29 min = 1, rogi planszy nie mogą być startem
+        int start = random.nextInt(SIZE - 2)+1;
+        //Wyznaczenie pozycji startowej
+        int[][] pozycja = new int[0][start];
+        System.out.println("Start z pozycji x = "+start+", y = 0");
+
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
@@ -43,6 +51,14 @@ public class Main {
             buttons[SIZE-1][i].setBackground((Color.BLACK));
             cellBlock[SIZE-1][i] = 1;
         }
+
+        //Pokoloruj start
+        buttons[0][start].setBackground((Color.YELLOW));
+
+        //cellBlock[]
+
+
+
 
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
