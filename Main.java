@@ -64,8 +64,10 @@ public class Main {
 
         buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
         buttons[y + 2][x].setBackground((Color.DARK_GRAY));
-        cellBlock[y + 1][x] = 2;
-        cellBlock[y + 2][x] = 2;
+        cellBlock[y + 1][x] = 1;
+        cellBlock[y + 2][x] = 1;
+        cellBlock[y + 1][x+1] = 2;
+        cellBlock[y + 1][x-1] = 2;
         cellBlock[y][x+1] = 2;
         cellBlock[y][x-1] = 2;
         stosx.push(x);
@@ -75,16 +77,18 @@ public class Main {
 
         int z = 1000;
         while(true) {
-            Thread.sleep(5);
+            Thread.sleep(1);
             int liczba = random.nextInt(4 - 1 + 1) + 1;
 
             if ((liczba == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
                 buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y + 2][x].setBackground((Color.DARK_GRAY));
-                cellBlock[y + 1][x] = 2;
-                cellBlock[y + 2][x] = 2;
-                cellBlock[y][x + 1] = 2;
-                cellBlock[y][x - 1] = 2;
+                cellBlock[y + 1][x] = 1;
+                cellBlock[y + 2][x] = 1;
+                cellBlock[y + 1][x+1] = 2;
+                cellBlock[y + 1][x-1] = 2;
+                cellBlock[y-1][x+1] = 2;
+                cellBlock[y-1][x-1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 y += 2;
@@ -93,10 +97,12 @@ public class Main {
             if ((liczba == 2) && (cellBlock[y - 2][x] == 0)) { //w górę
                 buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y - 2][x].setBackground((Color.DARK_GRAY));
-                cellBlock[y - 1][x] = 2;
-                cellBlock[y - 2][x] = 2;
-                cellBlock[y][x + 1] = 2;
-                cellBlock[y][x - 1] = 2;
+                cellBlock[y - 1][x] = 1;
+                cellBlock[y - 2][x] = 1;
+                cellBlock[y - 1][x+1] = 2;
+                cellBlock[y - 1][x-1] = 2;
+                cellBlock[y+1][x + 1] = 2;
+                cellBlock[y+1][x - 1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 y -= 2;
@@ -105,10 +111,12 @@ public class Main {
             if ((liczba == 3) && (cellBlock[y][x + 2] == 0)) { //w prawo
                 buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x + 2].setBackground((Color.DARK_GRAY));
-                cellBlock[y][x + 1] = 2;
-                cellBlock[y][x + 2] = 2;
-                cellBlock[y + 1][x] = 2;
-                cellBlock[y - 1][x] = 2;
+                cellBlock[y][x + 1] = 1;
+                cellBlock[y][x + 2] = 1;
+                cellBlock[y+1][x + 1] = 2;
+                cellBlock[y-1][x + 1] = 2;
+                cellBlock[y+1][x-1] = 2;
+                cellBlock[y-1][x-1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 x += 2;
@@ -116,10 +124,12 @@ public class Main {
             if ((liczba == 4) && (cellBlock[y][x - 2] == 0)) { //w lewo
                 buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x - 2].setBackground((Color.DARK_GRAY));
-                cellBlock[y][x - 1] = 2;
-                cellBlock[y][x - 2] = 2;
-                cellBlock[y + 1][x] = 2;
-                cellBlock[y - 1][x] = 2;
+                cellBlock[y][x - 1] = 1;
+                cellBlock[y][x - 2] = 1;
+                cellBlock[y+1][x - 1] = 2;
+                cellBlock[y-1][x - 1] = 2;
+                cellBlock[y + 1][x+1] = 2;
+                cellBlock[y - 1][x+1] = 2;
                 stosx.push(x);
                 stosy.push(y);
                 x -= 2;
@@ -149,13 +159,17 @@ public class Main {
             int liczba = (random.nextInt(15)+1)*2;
             if((deadEnd[SIZE-3][i] == 1) && (SIZE-3 == liczba)){
                 buttons[SIZE-2][i].setBackground(Color.YELLOW);
+                cellBlock[SIZE-2][i] = 1;
             }
         }
 
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
-                if((cellBlock[i][j] != 1)){
-                    buttons[i][j].setBackground(Color.BLACK);
+                if((cellBlock[i][j] == 0) || cellBlock[i][j] == 2){
+                    buttons[i][j].setBackground(Color.DARK_GRAY);
+                }
+                else{
+                    buttons[i][j].setBackground(Color.LIGHT_GRAY);
                 }
             }
         }
