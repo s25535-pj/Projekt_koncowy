@@ -36,6 +36,7 @@ public class Main {
                 JButton cell = new JButton();
                 buttons[i][j] = cell;
                 buttons[i][j].addActionListener(e -> cell.setBackground(Color.BLACK));
+                buttons[i][j].setBackground(Color.WHITE);
                 panel.add(cell);
             }
         }
@@ -65,80 +66,88 @@ public class Main {
             switch (liczba) {
 
                 case 1: //w dół
-                    if (cellBlock[y + 1][x] == 0) {
-                        buttons[y + 1][x].setBackground((Color.pink));
+                    if ((cellBlock[y + 1][x] == 0) && (cellBlock[y + 2][x] == 0)) {
+                        buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
+                        buttons[y + 2][x].setBackground((Color.DARK_GRAY));
                         cellBlock[y + 1][x] = 1;
+                        cellBlock[y + 2][x] = 1;
                         cellBlock[y][x+1] = 1;
                         cellBlock[y][x-1] = 1;
 //                        buttons[y][x+1].setBackground((Color.BLACK));
 //                        buttons[y][x-1].setBackground((Color.BLACK));
                         stosx.push(x);
                         stosy.push(y);
-                        y += 1;
+                        y += 2;
 
                     }
-                    else{
-                        System.out.print("Zawracam, x = "+stosx.pop());
-                        System.out.println(", y = "+stosy.pop());
-                    }
+//                    else{
+//                        System.out.print("Zawracam, x = "+stosx.pop());
+//                        System.out.println(", y = "+stosy.pop());
+//                    }
                     break;
                 case 2://w góre
-                    if (cellBlock[y - 1][x] == 0) {
-                        buttons[y - 1][x].setBackground((Color.pink));
+                    if ((cellBlock[y - 1][x] == 0) && cellBlock[y - 2][x] == 0) {
+                        buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
+                        buttons[y - 2][x].setBackground((Color.DARK_GRAY));
                         cellBlock[y - 1][x] = 1;
+                        cellBlock[y - 2][x] = 1;
                         cellBlock[y][x+1] = 1;
                         cellBlock[y][x-1] = 1;
 //                        buttons[y][x+1].setBackground((Color.BLACK));
 //                        buttons[y][x-1].setBackground((Color.BLACK));
                         stosx.push(x);
                         stosy.push(y);
-                        y -= 1;
+                        y -= 2;
 
                     }
-                    else{
-                        System.out.print("Zawracam, x = "+stosx.pop());
-                        System.out.println(", y = "+stosy.pop());
-                    }
+//                    else{
+//                        System.out.print("Zawracam, x = "+stosx.pop());
+//                        System.out.println(", y = "+stosy.pop());
+//                    }
                     break;
                 case 3://w prawo
-                    if (cellBlock[y][x + 1] == 0) {
-                        buttons[y][x + 1].setBackground((Color.pink));
+                    if ((cellBlock[y][x + 1] == 0) && cellBlock[y][x + 2] == 0) {
+                        buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
+                        buttons[y][x + 2].setBackground((Color.DARK_GRAY));
                         cellBlock[y][x + 1] = 1;
+                        cellBlock[y][x + 2] = 1;
                         cellBlock[y+1][x] = 1;
                         cellBlock[y-1][x] = 1;
 //                        buttons[y+1][x].setBackground((Color.BLACK));
 //                        buttons[y-1][x].setBackground((Color.BLACK));
                         stosx.push(x);
                         stosy.push(y);
-                        x += 1;
+                        x += 2;
                     }
-                    else{
-                        System.out.print("Zawracam, x = "+stosx.pop());
-                        System.out.println(", y = "+stosy.pop());
-                    }
+//                    else{
+//                        System.out.print("Zawracam, x = "+stosx.pop());
+//                        System.out.println(", y = "+stosy.pop());
+//                    }
                     break;
                 case 4://w lewo
-                    if (cellBlock[y][x - 1] == 0) {
-                        buttons[y][x - 1].setBackground((Color.pink));
+                    if ((cellBlock[y][x - 1] == 0) && (cellBlock[y][x - 2] == 0)) {
+                        buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
+                        buttons[y][x - 2].setBackground((Color.DARK_GRAY));
                         cellBlock[y][x - 1] = 1;
+                        cellBlock[y][x - 2] = 1;
                         cellBlock[y+1][x] = 1;
                         cellBlock[y-1][x] = 1;
 //                        buttons[y+1][x].setBackground((Color.BLACK));
 //                        buttons[y-1][x].setBackground((Color.BLACK));
                         stosx.push(x);
                         stosy.push(y);
-                        x -= 1;
+                        x -= 2;
                     }
-                    else{
-                        System.out.print("Zawracam, x = "+stosx.pop());
-                        System.out.println(", y = "+stosy.pop());
-                    }
+//                    else{
+//                        System.out.print("Zawracam, x = "+stosx.pop());
+//                        System.out.println(", y = "+stosy.pop());
+//                    }
                     break;
             }
         }
         //Pokoloruj start
         buttons[0][start].setBackground((Color.YELLOW));
-        buttons[1][start].setBackground(Color.pink);
+        buttons[1][start].setBackground(Color.RED);
 
         while(!stosx.empty()) {
             System.out.println(stosx.pop() + "   " + stosy.pop());
@@ -153,6 +162,10 @@ public class Main {
 //                Thread.sleep(10);
 //            }
 //        }
+    }
+
+    void createCell(int x, int y){
+
     }
 }
 
