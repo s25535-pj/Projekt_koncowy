@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Stack;
 
 
 public class Main {
@@ -12,13 +13,15 @@ public class Main {
         int SIZE = 30;
         int[][] cellBlock = new int[SIZE][SIZE];
         Random random = new Random();
+        Stack<Integer> stosx = new Stack<Integer>();
+        Stack<Integer> stosy = new Stack<Integer>();
 
         //random.nextInt(max - min + 1) + min max = 29 min = 1, rogi planszy nie mogą być startem
         int start = random.nextInt(SIZE - 2) + 1;
-
-        //Wyznaczenie pozycji startowej
-        int y = 0;
         int x = start;
+        int y = 1;
+        //Wyznaczenie pozycji startowej
+
         System.out.println("Start z pozycji x = " + start + ", y = 0");
 
 
@@ -54,12 +57,11 @@ public class Main {
             cellBlock[SIZE - 1][i] = 1;
         }
 
-        //Pokoloruj start
-        buttons[0][start].setBackground((Color.YELLOW));
-        y += 1;
 
-        while(true) {
-            int liczba = 1;
+        int z = 1000;
+        while(z > 0) {
+            z--;
+            int liczba = random.nextInt(4 - 1 + 1)+1;
             switch (liczba) {
 
                 case 1: //w dół
@@ -68,34 +70,80 @@ public class Main {
                         cellBlock[y + 1][x] = 1;
                         cellBlock[y][x+1] = 1;
                         cellBlock[y][x-1] = 1;
-                        buttons[y][x+1].setBackground((Color.BLACK));
-                        buttons[y][x-1].setBackground((Color.BLACK));
+//                        buttons[y][x+1].setBackground((Color.BLACK));
+//                        buttons[y][x-1].setBackground((Color.BLACK));
+                        stosx.push(x);
+                        stosy.push(y);
                         y += 1;
+
+                    }
+                    else{
+                        System.out.print("Zawracam, x = "+stosx.pop());
+                        System.out.println(", y = "+stosy.pop());
                     }
                     break;
                 case 2://w góre
                     if (cellBlock[y - 1][x] == 0) {
                         buttons[y - 1][x].setBackground((Color.pink));
                         cellBlock[y - 1][x] = 1;
+                        cellBlock[y][x+1] = 1;
+                        cellBlock[y][x-1] = 1;
+//                        buttons[y][x+1].setBackground((Color.BLACK));
+//                        buttons[y][x-1].setBackground((Color.BLACK));
+                        stosx.push(x);
+                        stosy.push(y);
                         y -= 1;
+
+                    }
+                    else{
+                        System.out.print("Zawracam, x = "+stosx.pop());
+                        System.out.println(", y = "+stosy.pop());
                     }
                     break;
                 case 3://w prawo
                     if (cellBlock[y][x + 1] == 0) {
                         buttons[y][x + 1].setBackground((Color.pink));
                         cellBlock[y][x + 1] = 1;
+                        cellBlock[y+1][x] = 1;
+                        cellBlock[y-1][x] = 1;
+//                        buttons[y+1][x].setBackground((Color.BLACK));
+//                        buttons[y-1][x].setBackground((Color.BLACK));
+                        stosx.push(x);
+                        stosy.push(y);
                         x += 1;
+                    }
+                    else{
+                        System.out.print("Zawracam, x = "+stosx.pop());
+                        System.out.println(", y = "+stosy.pop());
                     }
                     break;
                 case 4://w lewo
                     if (cellBlock[y][x - 1] == 0) {
                         buttons[y][x - 1].setBackground((Color.pink));
                         cellBlock[y][x - 1] = 1;
+                        cellBlock[y+1][x] = 1;
+                        cellBlock[y-1][x] = 1;
+//                        buttons[y+1][x].setBackground((Color.BLACK));
+//                        buttons[y-1][x].setBackground((Color.BLACK));
+                        stosx.push(x);
+                        stosy.push(y);
                         x -= 1;
+                    }
+                    else{
+                        System.out.print("Zawracam, x = "+stosx.pop());
+                        System.out.println(", y = "+stosy.pop());
                     }
                     break;
             }
         }
+        //Pokoloruj start
+        buttons[0][start].setBackground((Color.YELLOW));
+        buttons[1][start].setBackground(Color.pink);
+
+        while(!stosx.empty()) {
+            System.out.println(stosx.pop() + "   " + stosy.pop());
+        }
+
 
 //        for (int i = 0; i< 30; i++) {
 //            for (int j= 0; j < 30; j++) {
