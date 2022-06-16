@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class Main {
         frame.add(button);
 
         frame.setSize(400,500); //szerokosc, wysokosc
-        frame.setLayout(null);//bez menedżera "layoutu"
+        frame.setLayout(new GridLayout(10, 10));//bez menedżera "layoutu"
         frame.setVisible(true);//ramka ma być widoczna
     }
 }
