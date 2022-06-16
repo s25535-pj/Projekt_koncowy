@@ -2,23 +2,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
+        //Rozmiar planszy
+        int SIZE = 30;
 
         JFrame frame = new JFrame();
-        JPanel panel = new JPanel(new GridLayout(30, 30));
+        JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
         frame.add(panel);
+        JButton[][] buttons = new JButton[SIZE][SIZE];
 
-        JButton[][] buttons = new JButton[30][30];
-
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        //Tworzenie Planszy z cellsami; x to kolumny, y to wiersze
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
                 JButton cell = new JButton();
-                buttons[i][j] = cell;
-                buttons[i][j].addActionListener(e -> cell.setBackground(Color.BLACK));
+                buttons[x][y] = cell;
+                buttons[x][y].addActionListener(e -> cell.setBackground(Color.BLACK));
                 panel.add(cell);
             }
         }
@@ -27,11 +30,19 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                buttons[i][j].setBackground((Color.GRAY));
-                Thread.sleep(10);
-            }
+//        for (int i = 0; i < 30; i++) {
+//            for (int j = 0; j < 30; j++) {
+//                buttons[i][j].setBackground((Color.GRAY));
+//                Thread.sleep(10);
+//            }
+//        }
+
+        //Tworzenie ścian planszy
+        for(int i = 0; i <SIZE; i++) {
+            buttons[i][0].setBackground((Color.BLACK));
+            buttons[i][SIZE-1].setBackground((Color.BLACK));
+            buttons[0][i].setBackground((Color.BLACK));
+            buttons[SIZE-1][i].setBackground((Color.BLACK));
         }
     }
 }
