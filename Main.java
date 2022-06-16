@@ -18,13 +18,12 @@ public class Main {
         Stack<Integer> stosy = new Stack<Integer>();
 
         //random.nextInt(max - min + 1) + min max = 29 min = 1, rogi planszy nie mogą być startem
-        int start = random.nextInt(SIZE - 2) + 1;
-        start = 16;
+        int start = (random.nextInt(12)+2)*2;;
+        System.out.println("Start = "+start);
+        //start = 16;
         int x = start;
         int y = 0;
         //Wyznaczenie pozycji startowej
-
-        System.out.println("Start z pozycji x = " + start + ", y = 0");
 
 
         JFrame frame = new JFrame();
@@ -142,8 +141,6 @@ public class Main {
             if ((cellBlock[y][x - 2] != 0) && (cellBlock[y][x + 2] != 0) && (cellBlock[y - 2][x] != 0) && (cellBlock[y + 2][x] != 0)) {
                 x = stosx.pop();
                 y = stosy.pop();
-                //                System.out.print("Zawracam, x = " + stosx.pop());
-                //                System.out.println(", y = " + stosy.pop());
                 buttons[y][x].setBackground(Color.GREEN);
                 if(y == SIZE-3){
                     buttons[y][x].setBackground(Color.CYAN);
@@ -157,13 +154,13 @@ public class Main {
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
 
-        int liczba = (random.nextInt(12)+2)*2;
-        System.out.println(liczba);
+        int koniec = (random.nextInt(12)+2)*2;
+        System.out.println("Koniec = "+koniec);
         for(int i = 0; i < SIZE; i++){
-            if((deadEnd[SIZE-3][liczba] == 1)){
-                buttons[SIZE-2][liczba].setBackground(Color.YELLOW);
-                cellBlock[SIZE-2][liczba] = 1;
-                cellBlock[SIZE-1][liczba] = 1;
+            if((deadEnd[SIZE-3][koniec] == 1)){
+                buttons[SIZE-2][koniec].setBackground(Color.YELLOW);
+                cellBlock[SIZE-2][koniec] = 1;
+                cellBlock[SIZE-1][koniec] = 1;
             }
         }
 
