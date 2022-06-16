@@ -50,7 +50,7 @@ public class Main {
 
         //Ograniczanie planszy
         for (int i = 0; i < SIZE; i++) {
-            Thread.sleep(5);
+            Thread.sleep(10);
             buttons[i][0].setBackground((Color.BLACK));
             cellBlock[i][0] = 2;
             buttons[i][SIZE - 1].setBackground((Color.BLACK));
@@ -96,7 +96,7 @@ public class Main {
                 y += 2;
 
             }
-            if ((liczba == 2) && (cellBlock[y - 2][x] == 0)) { //w górę
+            if ((liczba == 2) && (y >= 2) && (cellBlock[y - 2][x] == 0)) { //w górę
                 buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y - 2][x].setBackground((Color.DARK_GRAY));
                 cellBlock[y - 1][x] = 1;
@@ -157,8 +157,7 @@ public class Main {
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
 
-        int liczba = (random.nextInt(14)+1)*2;
-        System.out.println(liczba);
+        int liczba = (random.nextInt(13)+1)*2;
         for(int i = 0; i < SIZE; i++){
             if((deadEnd[SIZE-3][liczba] == 1)){
                 buttons[SIZE-2][liczba].setBackground(Color.YELLOW);
