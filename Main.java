@@ -6,10 +6,11 @@ import java.util.Random;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        //Rozmiar planszy
+        //Rozmiar planszy, blokada pól
         int SIZE = 30;
+        int[][] cellBlock = new int[SIZE][SIZE];
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
@@ -30,19 +31,26 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-//        for (int i = 0; i < 30; i++) {
-//            for (int j = 0; j < 30; j++) {
-//                buttons[i][j].setBackground((Color.GRAY));
-//                Thread.sleep(10);
-//            }
-//        }
 
         //Tworzenie ścian planszy
         for(int i = 0; i <SIZE; i++) {
             buttons[i][0].setBackground((Color.BLACK));
+            cellBlock[i][0] = 1;
             buttons[i][SIZE-1].setBackground((Color.BLACK));
+            cellBlock[i][SIZE-1] = 1;
             buttons[0][i].setBackground((Color.BLACK));
+            cellBlock[0][i] = 1;
             buttons[SIZE-1][i].setBackground((Color.BLACK));
+            cellBlock[SIZE-1][i] = 1;
+        }
+
+        for (int x = 0; x < 30; x++) {
+            for (int y = 0; y < 30; y++) {
+                if(cellBlock[x][y] == 0){
+                    buttons[x][y].setBackground((Color.GRAY));
+                }
+                Thread.sleep(10);
+            }
         }
     }
 }
