@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         JFrame frame = new JFrame();
@@ -23,10 +23,16 @@ public class Main {
             }
         }
 
-
-        frame.setSize(1000,1000);
+        frame.setSize(1000, 1000);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                buttons[i][j].setBackground((Color.GRAY));
+                Thread.sleep(10);
+            }
+        }
     }
 }
 
