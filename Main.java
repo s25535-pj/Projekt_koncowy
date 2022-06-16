@@ -12,6 +12,7 @@ public class Main {
         //Rozmiar planszy, blokada pól
         int SIZE = 31;
         int[][] cellBlock = new int[SIZE][SIZE];
+        int[][] deadEnd = new int [SIZE][SIZE];
         Random random = new Random();
         Stack<Integer> stosx = new Stack<Integer>();
         Stack<Integer> stosy = new Stack<Integer>();
@@ -72,9 +73,8 @@ public class Main {
         y += 2;
 
         int z = 1000;
-        while(z > 0) {
-            z--;
-            Thread.sleep(10);
+        while(true) {
+            Thread.sleep(5);
             int liczba = random.nextInt(4 - 1 + 1) + 1;
 
             if ((liczba == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
@@ -131,18 +131,34 @@ public class Main {
                 stosy.push(y);
                 x -= 2;
             }
-            if (!stosx.empty() && (cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1)) {
+            if(stosx.empty()) {
+                break;
+            }
+            if ((cellBlock[y][x - 2] == 1) && (cellBlock[y][x + 2] == 1) && (cellBlock[y - 2][x] == 1) && (cellBlock[y + 2][x] == 1)) {
                 x = stosx.pop();
                 y = stosy.pop();
                 //                System.out.print("Zawracam, x = " + stosx.pop());
                 //                System.out.println(", y = " + stosy.pop());
                 buttons[y][x].setBackground(Color.GREEN);
+                if(y == 28){
+                    deadEnd[y][x] = 1;
+                    buttons[y][x].setBackground(Color.CYAN);
+                }
+
             }
         }
 
         //Pokoloruj start
         buttons[0][start].setBackground((Color.YELLOW));
         buttons[1][start].setBackground(Color.RED);
+
+        for(int i = 0; i < SIZE; i++){
+            if(deadEnd[SIZE-3][i] == 1){
+                buttons[SIZE-3][i].setBackground(Color.YELLOW);
+                break;
+            }
+        }
+
 
 //        for (int i = 0; i< 30; i++) {
 //            for (int j= 0; j < 30; j++) {
