@@ -4,7 +4,7 @@ public class Main {
         plansza.createBoard();
         plansza.limitBoard();
         plansza.fillTheBoard();
-        Game game = new Game();
+        plansza.startGame();
     }
 }
 

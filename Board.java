@@ -7,7 +7,7 @@ import java.util.Random;
 public class Board {
 
     final int SIZE = 31;
-    final int TIME = 1;
+    final int TIME = 0;
 
     Random random = new Random();
     int[][] cellBlock = new int[SIZE][SIZE];
@@ -54,4 +54,6 @@ public class Board {
         System.out.println("Start = "+start);
         return start;
     }
+
+
 }

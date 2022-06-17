@@ -15,8 +15,6 @@ public class Game extends FillTheBoard implements KeyListener {
 
 		frame.getContentPane().setBackground(Color.black);
 		frame.setVisible(true);
-		x = start;
-		y = 0;
 	}
 
 	@Override
@@ -29,42 +27,42 @@ public class Game extends FillTheBoard implements KeyListener {
 		}
 
 	}
-	public void moveUp() {
-		System.out.println("w");
-		if (cellBlock[y][x] == 1) {
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-			y -= 1;
-		}
-	}
-
-	public void moveDown() {
-		System.out.println("s");
-		if (cellBlock[y][x] == 1) {
-			System.out.println("działa");
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-			y += 1;
-		}
-	}
-
-	public void moveRight() {
-		System.out.println("d");
-		if (cellBlock[y][x] == 1) {
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-			x += 1;
-		}
-	}
-
-	public void moveLeft() {
-		System.out.println("a");
-		if (cellBlock[y][x] == 1) {
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-			x -= 1;
-		}
-	}
+//	public void moveUp() {
+//		System.out.println("w");
+//		if (cellBlock[y][x] == 1) {
+//			cellBlock[y][x] = 2;
+//			buttons[y][x].setBackground(Color.YELLOW);
+//			y -= 1;
+//		}
+//	}
+//
+//	public void moveDown() {
+//		System.out.println("s");
+//		if (cellBlock[y][x] == 1) {
+//			System.out.println("działa");
+//			cellBlock[y][x] = 2;
+//			buttons[y][x].setBackground(Color.YELLOW);
+//			y += 1;
+//		}
+//	}
+//
+//	public void moveRight() {
+//		System.out.println("d");
+//		if (cellBlock[y][x] == 1) {
+//			cellBlock[y][x] = 2;
+//			buttons[y][x].setBackground(Color.YELLOW);
+//			x += 1;
+//		}
+//	}
+//
+//	public void moveLeft() {
+//		System.out.println("a");
+//		if (cellBlock[y][x] == 1) {
+//			cellBlock[y][x] = 2;
+//			buttons[y][x].setBackground(Color.YELLOW);
+//			x -= 1;
+//		}
+//	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
