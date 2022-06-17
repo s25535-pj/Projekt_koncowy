@@ -1,16 +1,13 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.Stack;
 
-public class FillTheBoard extends Board implements KeyListener {
+public class FillTheBoard extends Board {
 
     Random random = new Random();
     int[][] deadEnd = new int[SIZE][SIZE];
-    Stack<Integer> pathX = new Stack<Integer>();
-    Stack<Integer> pathY = new Stack<Integer>();
+    Stack<Integer> pathX = new Stack<>();
+    Stack<Integer> pathY = new Stack<>();
 
     int start = getStartPosition();
     int x = start;
@@ -42,7 +39,7 @@ public class FillTheBoard extends Board implements KeyListener {
 
     public void addStart(){
         buttons[0][x].setBackground(Color.YELLOW);
-        cellBlock[y][x] = 1;
+        cellBlock[y][x] = 3;
     }
     public void firstMove(){
         if (cellBlock[y + 2][x] == 0) { //w dół
@@ -151,9 +148,9 @@ public class FillTheBoard extends Board implements KeyListener {
         for (int i = 0; i < SIZE; i++) {
             if ((deadEnd[SIZE - 3][koniec] == 1)) {
                 buttons[SIZE - 2][koniec].setBackground(Color.LIGHT_GRAY);
-                buttons[SIZE - 1][koniec].setBackground(Color.YELLOW);
+                buttons[SIZE - 1][koniec].setBackground(Color.ORANGE);
                 cellBlock[SIZE - 2][koniec] = 1;
-                cellBlock[SIZE - 1][koniec] = 1;
+                cellBlock[SIZE - 1][koniec] = 3;
             }
         }
     }
@@ -164,7 +161,7 @@ public class FillTheBoard extends Board implements KeyListener {
                 if ((cellBlock[i][j] == 0) || cellBlock[i][j] == 2) {
                     buttons[i][j].setBackground(Color.DARK_GRAY);
                 }
-                else {
+                else if(cellBlock[i][j] != 3){
                     buttons[i][j].setBackground(Color.LIGHT_GRAY);
                 }
             }
@@ -189,85 +186,5 @@ public class FillTheBoard extends Board implements KeyListener {
             }
         }
         System.out.println();
-    }
-
-    public void startGame(){
-        x = start;
-        y = 0;
-        System.out.println("x = "+x);
-        System.out.println("y = "+y);
-        System.out.println("cell = "+cellBlock[y][x]);
-        buttons[y][x].setBackground(Color.GREEN);
-
-        JFrame frame = new JFrame();
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(0, 0);
-		frame.setLayout(null);
-		frame.addKeyListener(this);
-
-		frame.getContentPane().setBackground(Color.black);
-		frame.setVisible(true);
-	}
-
-    public void moveUp() {
-		System.out.println("w");
-		if (cellBlock[y-1][x] == 1) {
-//            System.out.println("Działa");
-            y -= 1;
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-
-		}
-	}
-
-	public void moveDown() {
-		System.out.println("s");
-		if (cellBlock[y+1][x] == 1) {
-//			System.out.println("Działa");
-            y += 1;
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-		}
-	}
-
-	public void moveRight() {
-		System.out.println("d");
-		if (cellBlock[y][x+1] == 1) {
-            x += 1;
-//            System.out.println("Działa");
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-		}
-	}
-
-	public void moveLeft() {
-		System.out.println("a");
-		if (cellBlock[y][x-1] == 1) {
-            x -= 1;
-//            System.out.println("Działa");
-			cellBlock[y][x] = 2;
-			buttons[y][x].setBackground(Color.YELLOW);
-		}
-	}
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-		switch (e.getKeyChar()) {
-			case 'w' -> moveUp();
-			case 's' -> moveDown();
-			case 'd' -> moveRight();
-			case 'a' -> moveLeft();
-		}
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }

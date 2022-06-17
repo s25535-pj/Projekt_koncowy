@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        FillTheBoard plansza = new FillTheBoard();
+        Game plansza = new Game();
         plansza.createBoard();
         plansza.limitBoard();
         plansza.fillTheBoard();

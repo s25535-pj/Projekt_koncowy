@@ -7,16 +7,14 @@ public class Board {
     final int SIZE = 31;
     final int TIME = 0;
 
+    JFrame frame = new JFrame();
+    JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
     Random random = new Random();
     int[][] cellBlock = new int[SIZE][SIZE];
     JButton[][] buttons = new JButton[SIZE][SIZE];
 
-
     public void createBoard() {
-        System.out.println("Create board");
-
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
+        System.out.println("Creating board");
         frame.add(panel);
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -32,7 +30,7 @@ public class Board {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void limitBoard() throws InterruptedException {
-        System.out.println("Limit board");
+        System.out.println("Limiting board");
 
         for (int i = 0; i < SIZE; i++) {
             Thread.sleep(10);
