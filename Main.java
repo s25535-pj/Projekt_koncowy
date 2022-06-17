@@ -189,16 +189,18 @@ public class Main {
 //
 //        });
 //        frame2.add(w);
-        goUp(start,2, cellBlock, buttons);
 
+        Pozycja p = new Pozycja(start,0);
+        goUp(p, cellBlock, buttons);
 
     }
 
-    public static void goUp(int x, int y, int[][] cellBlock, JButton[][] buttons) {
-        if(cellBlock[y][x] == 1){
+
+    public static void goUp(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+        if(cellBlock[p.y][p.x] == 1){
             System.out.println("koloruje!");
-            buttons[y][x].setBackground(Color.yellow);
-            cellBlock[y][x] = 2;
+            buttons[p.y][p.x].setBackground(Color.yellow);
+            cellBlock[p.y][p.x] = 2;
         }
     }
 }
