@@ -9,7 +9,8 @@ public class FillTheBoard extends Board {
     Stack<Integer> pathX = new Stack<Integer>();
     Stack<Integer> pathY = new Stack<Integer>();
 
-    int x = getStartPosition();
+    int start = getStartPosition();
+    int x = start;
     int y = 0;
 
     public void fillTheBoard() throws InterruptedException {
