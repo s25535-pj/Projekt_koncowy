@@ -4,10 +4,13 @@ import java.util.Random;
 
 public class Board {
 
-    static int SIZE = 31;
+    final int SIZE = 31;
+    final int TIME = 1;
+
+    Random random = new Random();
     int[][] cellBlock = new int[SIZE][SIZE];
     JButton[][] buttons = new JButton[SIZE][SIZE];
-    Random random = new Random();
+
 
     public void createBoard() throws InterruptedException {
         System.out.println("Create board");
