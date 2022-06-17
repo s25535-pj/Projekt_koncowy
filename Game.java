@@ -4,6 +4,25 @@ import javax.swing.*;
 
 public class Game extends FillTheBoard implements KeyListener {
 
+	boolean gameHasEnded = true;
+	public static void main(String[] args) throws InterruptedException {
+		Game plansza = new Game();
+        plansza.createBoard();
+        while(true){
+			if(plansza.gameHasEnded) {
+				START(plansza);
+				plansza.gameHasEnded = false;
+			}
+			Thread.sleep(2000);
+		}
+	}
+
+	public static void START(Game plansza) throws InterruptedException {
+        plansza.limitBoard();
+        plansza.fillTheBoard();
+        plansza.startGame();
+    }
+
 	public void startGame(){
 		y = 1;
 		x = start;
@@ -18,8 +37,13 @@ public class Game extends FillTheBoard implements KeyListener {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
 				buttons[i][j].setBackground(Color.LIGHT_GRAY);
+				cellBlock[i][j] = 0;
 			}
 		}
+		start = getStartPosition();
+		x = start;
+		y = 0;
+		gameHasEnded = true;
 	}
 
 	@Override

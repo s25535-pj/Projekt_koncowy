@@ -17,25 +17,25 @@ public class FillTheBoard extends Board {
     public void fillTheBoard() throws InterruptedException {
         addStart();
         firstMove();
-        while(true) {
-            makeWay();
-            slowDown(TIME);
-            if (emptyStack()) break;
-            deadEnd();
-        }
+        makeWay();
         addEnd();
         finishTheBoard();
-        showAllCells();
+//        showAllCells();
     }
 
-    public void makeWay(){
-        int way = random.nextInt(4)+1;
+    public void makeWay() throws InterruptedException {
+        while(true) {
+            int way = random.nextInt(4) + 1;
             switch (way) {
                 case 1 -> goDown();
                 case 2 -> goUp();
                 case 3 -> goRight();
                 case 4 -> goLeft();
             }
+            slowDown(TIME);
+            if (emptyStack()) break;
+            deadEnd();
+        }
     }
 
     public void addStart(){
