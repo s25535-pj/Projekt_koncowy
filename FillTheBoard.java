@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 import java.util.Stack;
@@ -52,11 +51,9 @@ public class FillTheBoard extends Board {
             pathX.push(x);
             pathY.push(y);
             y += 2;
-
-
         }
     }
-    public void goDown() {
+    public boolean goDown() {
         if (cellBlock[y + 2][x] == 0) { //w dół
             buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
             buttons[y + 2][x].setBackground((Color.DARK_GRAY));
@@ -69,12 +66,12 @@ public class FillTheBoard extends Board {
             pathX.push(x);
             pathY.push(y);
             y += 2;
-
-
+            return true;
         }
-
+        return false;
     }
-    public void goUp() {
+
+    public boolean goUp() {
         if ((y >= 2) && (cellBlock[y - 2][x] == 0)) { //w górę
                 buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y - 2][x].setBackground((Color.DARK_GRAY));
@@ -87,9 +84,12 @@ public class FillTheBoard extends Board {
                 pathX.push(x);
                 pathY.push(y);
                 y -= 2;
+                return true;
             }
+        return false;
     }
-    public void goRight() {
+
+    public boolean goRight() {
         if (cellBlock[y][x + 2] == 0) { //w prawo
                 buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x + 2].setBackground((Color.DARK_GRAY));
@@ -102,23 +102,27 @@ public class FillTheBoard extends Board {
                 pathX.push(x);
                 pathY.push(y);
                 x += 2;
-            }
-
+                return true;
+        }
+        return false;
     }
-    public void goLeft(){
+
+    public boolean goLeft(){
         if (cellBlock[y][x - 2] == 0) { //w lewo
-                buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
-                buttons[y][x - 2].setBackground((Color.DARK_GRAY));
-                cellBlock[y][x - 1] = 1;
-                cellBlock[y][x - 2] = 1;
-                cellBlock[y + 1][x - 1] = 2;
-                cellBlock[y - 1][x - 1] = 2;
-                cellBlock[y + 1][x + 1] = 2;
-                cellBlock[y - 1][x + 1] = 2;
-                pathX.push(x);
-                pathY.push(y);
-                x -= 2;
-            }
+            buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
+            buttons[y][x - 2].setBackground((Color.DARK_GRAY));
+            cellBlock[y][x - 1] = 1;
+            cellBlock[y][x - 2] = 1;
+            cellBlock[y + 1][x - 1] = 2;
+            cellBlock[y - 1][x - 1] = 2;
+            cellBlock[y + 1][x + 1] = 2;
+            cellBlock[y - 1][x + 1] = 2;
+            pathX.push(x);
+            pathY.push(y);
+            x -= 2;
+            return true;
+        }
+        return false;
     }
 
     public boolean emptyStack(){
@@ -126,7 +130,7 @@ public class FillTheBoard extends Board {
     }
 
     public void deadEnd(){
-        if ((cellBlock[y][x - 2] != 0) && (cellBlock[y][x + 2] != 0) && (cellBlock[y - 2][x] != 0) && (cellBlock[y + 2][x] != 0)) {
+        if(!goDown() && !goUp() && !goLeft() && !goRight()){
             x = pathX.pop();
             y = pathY.pop();
             buttons[y][x].setBackground(Color.GREEN);
