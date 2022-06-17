@@ -9,6 +9,7 @@ import java.util.Stack;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
+//        Generator.createMap();
         //Rozmiar planszy, blokada pól
         int SIZE = 31;
         int[][] cellBlock = new int[SIZE][SIZE];
@@ -44,8 +45,8 @@ public class Main {
         }
 
         frame.setSize(1000, 1000);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
         //Ograniczanie planszy
@@ -174,6 +175,9 @@ public class Main {
                 }
             }
         }
+    }
+}
+
 
 //        JButton[] sterowanie = new JButton[4];
 //        JFrame frame2 = new JFrame("Sterowanie");
@@ -190,39 +194,93 @@ public class Main {
 //        });
 //        frame2.add(w);
 
-        Pozycja p = new Pozycja(start,0);
-        Thread.sleep(1000);
-        goDown(p, cellBlock, buttons);
-        System.out.println("x= "+p.x+" y = "+p.y);
-        Thread.sleep(1000);
-        goDown(p, cellBlock, buttons);
-        System.out.println("x= "+p.x+" y = "+p.y);
-        goDown(p, cellBlock, buttons);
-        System.out.println("x= "+p.x+" y = "+p.y);
-        goDown(p, cellBlock, buttons);
-        System.out.println("x= "+p.x+" y = "+p.y);
 
-    }
+//        Action upAction;
+//
+//        upAction = new UpAction();
+//		downAction = new DownAction();
+//		leftAction = new LeftAction();
+//		rightAction = new RightAction();
+//
+//		panel.getInputMap().put(KeyStroke.getKeyStroke('w'), "upAction");
+//		panel.getActionMap().put("upAction", upAction);
+//		panel.getInputMap().put(KeyStroke.getKeyStroke('s'), "downAction");
+//		panel.getActionMap().put("downAction", downAction);
+//		panel.getInputMap().put(KeyStroke.getKeyStroke('a'), "leftAction");
+//		panel.getActionMap().put("leftAction", leftAction);
+//		panel.getInputMap().put(KeyStroke.getKeyStroke('d'), "rightAction");
+//		panel.getActionMap().put("rightAction", rightAction);
+//
+//        Pozycja p = new Pozycja(start, 0);
+//        goDown(p, cellBlock, buttons);
+//
+//        /*panel.getInputMap().get(KeyStroke.getKeyStroke('w'));*/
+//
+//
+//    }
+//
+//    public static void goUp(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+//        if (cellBlock[p.y][p.x] == 1) {
+//            p.y -= 1;
+//            buttons[p.y][p.x].setBackground(Color.yellow);
+//            cellBlock[p.y][p.x] = 2;
+//        }
+//    }
+//
+//    public static void goDown(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+//        if (cellBlock[p.y + 1][p.x] == 1) {
+//            p.y += 1;
+//            buttons[p.y][p.x].setBackground(Color.yellow);
+//            cellBlock[p.y][p.x] = 2;
+//        }
+//    }
+//
+//    public static void goLeft(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+//        if (cellBlock[p.y + 1][p.x] == 1) {
+//            p.x -= 1;
+//            buttons[p.y][p.x].setBackground(Color.yellow);
+//            cellBlock[p.y][p.x] = 2;
+//        }
+//    }
+//
+//    public static void goRight(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+//        if (cellBlock[p.y + 1][p.x] == 1) {
+//            p.x += 1;
+//            buttons[p.y][p.x].setBackground(Color.yellow);
+//            cellBlock[p.y][p.x] = 2;
+//        }
+//    }
+//}
+//
+//    public class UpAction extends AbstractAction{
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//
+//		}
+//	}
+//	public class DownAction extends AbstractAction {
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//
+//		}
+//	}
+//	public class LeftAction extends AbstractAction{
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//
+//		}
+//	}
+//	public class RightAction extends AbstractAction{
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//
+//		}
+//	}
 
-
-    public static void goUp(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
-        if(cellBlock[p.y][p.x] == 1){
-            System.out.println("koloruje!");
-            buttons[p.y][p.x].setBackground(Color.yellow);
-            cellBlock[p.y][p.x] = 2;
-            System.out.println("x= "+p.x+" y = "+p.y);
-        }
-    }
-    public static void goDown(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
-        if(cellBlock[p.y+1][p.x] == 1){
-            p.y += 1;
-            buttons[p.y][p.x].setBackground(Color.yellow);
-            cellBlock[p.y][p.x] = 2;
-            System.out.println("x= "+p.x+" y = "+p.y);
-        }
-    }
-
-}
 
 
 
