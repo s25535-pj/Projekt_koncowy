@@ -5,7 +5,7 @@ import java.util.Random;
 public class Board {
 
     final int SIZE = 31;
-    final int TIME = 10;
+    final int TIME = 1;
 
     Random random = new Random();
     int[][] cellBlock = new int[SIZE][SIZE];
