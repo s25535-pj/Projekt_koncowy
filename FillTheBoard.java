@@ -19,10 +19,20 @@ public class FillTheBoard extends Board {
         firstMove();
         while(true){
             way = random.nextInt(4)+1;
-            goDown();
-            goUp();
-            goRight();
-            goLeft();
+            switch (way) {
+                case 1:
+                    goDown();
+                    break;
+                case 2:
+                    goUp();
+                    break;
+                case 3:
+                    goRight();
+                    break;
+                case 4:
+                    goLeft();
+                    break;
+            }
             slowDown(TIME);
             if(emptyStack()) break;
             deadEnd();
@@ -47,7 +57,7 @@ public class FillTheBoard extends Board {
         }
     }
     public void goDown() {
-        if ((way == 1) && (cellBlock[y + 2][x] == 0)) { //w dół
+        if (cellBlock[y + 2][x] == 0) { //w dół
             buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
             buttons[y + 2][x].setBackground((Color.DARK_GRAY));
             cellBlock[y + 1][x] = 1;
@@ -65,7 +75,7 @@ public class FillTheBoard extends Board {
 
     }
     public void goUp() {
-        if ((way == 2) && (y >= 2) && (cellBlock[y - 2][x] == 0)) { //w górę
+        if ((y >= 2) && (cellBlock[y - 2][x] == 0)) { //w górę
                 buttons[y - 1][x].setBackground((Color.LIGHT_GRAY));
                 buttons[y - 2][x].setBackground((Color.DARK_GRAY));
                 cellBlock[y - 1][x] = 1;
@@ -80,7 +90,7 @@ public class FillTheBoard extends Board {
             }
     }
     public void goRight() {
-        if ((way == 3) && (cellBlock[y][x + 2] == 0)) { //w prawo
+        if (cellBlock[y][x + 2] == 0) { //w prawo
                 buttons[y][x + 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x + 2].setBackground((Color.DARK_GRAY));
                 cellBlock[y][x + 1] = 1;
@@ -96,7 +106,7 @@ public class FillTheBoard extends Board {
 
     }
     public void goLeft(){
-        if ((way == 4) && (cellBlock[y][x - 2] == 0)) { //w lewo
+        if (cellBlock[y][x - 2] == 0) { //w lewo
                 buttons[y][x - 1].setBackground((Color.LIGHT_GRAY));
                 buttons[y][x - 2].setBackground((Color.DARK_GRAY));
                 cellBlock[y][x - 1] = 1;
