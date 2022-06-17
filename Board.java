@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class Board {
@@ -14,7 +12,7 @@ public class Board {
     JButton[][] buttons = new JButton[SIZE][SIZE];
 
 
-    public void createBoard() throws InterruptedException {
+    public void createBoard() {
         System.out.println("Create board");
 
         JFrame frame = new JFrame();

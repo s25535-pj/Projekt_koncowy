@@ -193,11 +193,11 @@ public class FillTheBoard extends Board implements KeyListener {
 
     public void startGame(){
         x = start;
-        y = 1;
+        y = 0;
         System.out.println("x = "+x);
         System.out.println("y = "+y);
         System.out.println("cell = "+cellBlock[y][x]);
-        buttons[y][x].setBackground(Color.RED);
+        buttons[y][x].setBackground(Color.GREEN);
 
         JFrame frame = new JFrame();
 
