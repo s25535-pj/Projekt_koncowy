@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board {
 
-    final int SIZE = 31;
+    final int SIZE = 15; //TO musi być liczba nieparzysta!
     final int TIME = 0;
 
     JFrame frame = new JFrame();
@@ -46,7 +46,13 @@ public class Board {
     }
 
     public int getStartPosition(){
-        int start = (random.nextInt(12) + 2) * 2;
+        int start = (random.nextInt(SIZE-3) + 2);
+        if((start % 2 != 0 ) && (start > SIZE-3)){
+            start -= 1;
+        }
+        else if(start % 2 != 0 ){
+            start += 1;
+        }
         System.out.println("Start = "+start);
         return start;
     }

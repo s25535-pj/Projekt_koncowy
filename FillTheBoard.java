@@ -144,15 +144,17 @@ public class FillTheBoard extends Board {
     }
 
     public void addEnd(){
-        koniec = (random.nextInt(12) + 2) * 2;
+        koniec = (random.nextInt(SIZE-3) + 2);
         System.out.println("Koniec = " + koniec);
-        for (int i = 0; i < SIZE; i++) {
-            if ((deadEnd[SIZE - 3][koniec] == 1)) {
+        while(true){
+            if ((deadEnd[SIZE - 3][koniec] == 1) && (cellBlock[SIZE - 3][koniec] != 2)) {
                 buttons[SIZE - 2][koniec].setBackground(Color.LIGHT_GRAY);
                 buttons[SIZE - 1][koniec].setBackground(Color.ORANGE);
                 cellBlock[SIZE - 2][koniec] = 1;
                 cellBlock[SIZE - 1][koniec] = 3;
+                break;
             }
+            koniec = (random.nextInt(SIZE-3) + 2);
         }
     }
 

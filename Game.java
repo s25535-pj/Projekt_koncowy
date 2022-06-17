@@ -20,8 +20,6 @@ public class Game extends FillTheBoard implements KeyListener {
 				buttons[i][j].setBackground(Color.LIGHT_GRAY);
 			}
 		}
-
-
 	}
 
 	@Override
