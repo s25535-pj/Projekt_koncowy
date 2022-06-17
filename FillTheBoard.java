@@ -9,6 +9,7 @@ public class FillTheBoard extends Board {
     Stack<Integer> pathX = new Stack<>();
     Stack<Integer> pathY = new Stack<>();
 
+    int koniec;
     int start = getStartPosition();
     int x = start;
     int y = 0;
@@ -143,7 +144,7 @@ public class FillTheBoard extends Board {
     }
 
     public void addEnd(){
-        int koniec = (random.nextInt(12) + 2) * 2;
+        koniec = (random.nextInt(12) + 2) * 2;
         System.out.println("Koniec = " + koniec);
         for (int i = 0; i < SIZE; i++) {
             if ((deadEnd[SIZE - 3][koniec] == 1)) {

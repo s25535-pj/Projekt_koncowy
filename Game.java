@@ -13,6 +13,17 @@ public class Game extends FillTheBoard implements KeyListener {
 		listener.setVisible(true);
 	}
 
+	public void endGame(){
+		System.out.println("koniec");
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				buttons[i][j].setBackground(Color.LIGHT_GRAY);
+			}
+		}
+
+
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		switch (e.getKeyChar()) {
@@ -29,7 +40,9 @@ public class Game extends FillTheBoard implements KeyListener {
             y -= 1;
 			cellBlock[y][x] = 2;
 			buttons[y][x].setBackground(Color.YELLOW);
-
+		}
+		else if((x == koniec) && (y-1 == SIZE-1 )){
+				endGame();
 		}
 	}
 
@@ -40,6 +53,9 @@ public class Game extends FillTheBoard implements KeyListener {
 			cellBlock[y][x] = 2;
 			buttons[y][x].setBackground(Color.YELLOW);
 		}
+		else if((x == koniec) && (y+1 == SIZE-1 )){
+				endGame();
+		}
 	}
 
 	public void moveRight() {
@@ -49,6 +65,9 @@ public class Game extends FillTheBoard implements KeyListener {
 			cellBlock[y][x] = 2;
 			buttons[y][x].setBackground(Color.YELLOW);
 		}
+		else if((x+1 == koniec) && (y == SIZE-1 )){
+				endGame();
+		}
 	}
 
 	public void moveLeft() {
@@ -57,6 +76,9 @@ public class Game extends FillTheBoard implements KeyListener {
             x -= 1;
 			cellBlock[y][x] = 2;
 			buttons[y][x].setBackground(Color.YELLOW);
+		}
+		else if((x-1 == koniec) && (y == SIZE-1 )){
+				endGame();
 		}
 	}
 
