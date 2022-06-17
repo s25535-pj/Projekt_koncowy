@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class Board {
@@ -27,7 +29,6 @@ public class Board {
                 panel.add(cell);
             }
         }
-
         frame.setSize(1000, 1000);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
