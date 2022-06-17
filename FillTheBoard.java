@@ -30,12 +30,12 @@ public class FillTheBoard extends Board {
 
     public void makeWay(){
         int way = random.nextInt(4)+1;
-        switch (way) {
-            case 1 -> goDown();
-            case 2 -> goUp();
-            case 3 -> goRight();
-            case 4 -> goLeft();
-        }
+            switch (way) {
+                case 1 -> goDown();
+                case 2 -> goUp();
+                case 3 -> goRight();
+                case 4 -> goLeft();
+            }
     }
 
     public void addStart(){

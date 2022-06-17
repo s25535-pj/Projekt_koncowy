@@ -4,8 +4,9 @@ import java.util.Random;
 
 public class Board {
 
-    final int SIZE = 15; //TO musi być liczba nieparzysta!
-    final int TIME = 0;
+    final int SIZE = 31; //TO musi być liczba nieparzysta!
+    final int TIME = 1;
+    final int BOARD_SIZE = 1000;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
@@ -25,7 +26,7 @@ public class Board {
                 panel.add(cell);
             }
         }
-        frame.setSize(1000, 1000);
+        frame.setSize(BOARD_SIZE, BOARD_SIZE);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
@@ -56,6 +57,4 @@ public class Board {
         System.out.println("Start = "+start);
         return start;
     }
-
-
 }
