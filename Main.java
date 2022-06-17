@@ -191,7 +191,16 @@ public class Main {
 //        frame2.add(w);
 
         Pozycja p = new Pozycja(start,0);
-        goUp(p, cellBlock, buttons);
+        Thread.sleep(1000);
+        goDown(p, cellBlock, buttons);
+        System.out.println("x= "+p.x+" y = "+p.y);
+        Thread.sleep(1000);
+        goDown(p, cellBlock, buttons);
+        System.out.println("x= "+p.x+" y = "+p.y);
+        goDown(p, cellBlock, buttons);
+        System.out.println("x= "+p.x+" y = "+p.y);
+        goDown(p, cellBlock, buttons);
+        System.out.println("x= "+p.x+" y = "+p.y);
 
     }
 
@@ -201,8 +210,18 @@ public class Main {
             System.out.println("koloruje!");
             buttons[p.y][p.x].setBackground(Color.yellow);
             cellBlock[p.y][p.x] = 2;
+            System.out.println("x= "+p.x+" y = "+p.y);
         }
     }
+    public static void goDown(Pozycja p, int[][] cellBlock, JButton[][] buttons) {
+        if(cellBlock[p.y+1][p.x] == 1){
+            p.y += 1;
+            buttons[p.y][p.x].setBackground(Color.yellow);
+            cellBlock[p.y][p.x] = 2;
+            System.out.println("x= "+p.x+" y = "+p.y);
+        }
+    }
+
 }
 
 
