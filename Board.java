@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board {
 
-    final int SIZE = 31; //TO musi być liczba nieparzysta!
+    final int SIZE = 21; //TO musi być liczba nieparzysta!
     final int TIME = 1;
     final int BOARD_SIZE = 1000;
 
@@ -23,6 +23,7 @@ public class Board {
                 buttons[i][j] = cell;
                 buttons[i][j].addActionListener(e -> cell.setBackground(Color.BLACK));
                 buttons[i][j].setBackground(Color.WHITE);
+                buttons[i][j].setBorder(BorderFactory.createEtchedBorder());
                 panel.add(cell);
             }
         }
