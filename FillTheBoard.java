@@ -11,35 +11,34 @@ public class FillTheBoard extends Board {
 
     int x = getStartPosition();
     int y = 0;
-    int way;
-
 
     public void fillTheBoard() throws InterruptedException {
+        addStart();
         firstMove();
-        while(true){
-            way = random.nextInt(4)+1;
-            switch (way) {
-                case 1:
-                    goDown();
-                    break;
-                case 2:
-                    goUp();
-                    break;
-                case 3:
-                    goRight();
-                    break;
-                case 4:
-                    goLeft();
-                    break;
-            }
+        while(true) {
+            makeWay();
             slowDown(TIME);
-            if(emptyStack()) break;
+            if (emptyStack()) break;
             deadEnd();
+        }
+        addEnd();
+        finishTheBoard();
+    }
 
+    public void makeWay(){
+        int way = random.nextInt(4)+1;
+        switch (way) {
+            case 1 -> goDown();
+            case 2 -> goUp();
+            case 3 -> goRight();
+            case 4 -> goLeft();
         }
     }
 
-
+    public void addStart(){
+        buttons[0][x].setBackground(Color.YELLOW);
+        cellBlock[y][x] = 1;
+    }
     public void firstMove(){
         if (cellBlock[y + 2][x] == 0) { //w dół
             buttons[y + 1][x].setBackground((Color.LIGHT_GRAY));
@@ -140,6 +139,33 @@ public class FillTheBoard extends Board {
             }
         }
     }
+
+    public void addEnd(){
+        int koniec = (random.nextInt(12) + 2) * 2;
+        System.out.println("Koniec = " + koniec);
+        for (int i = 0; i < SIZE; i++) {
+            if ((deadEnd[SIZE - 3][koniec] == 1)) {
+                buttons[SIZE - 2][koniec].setBackground(Color.LIGHT_GRAY);
+                buttons[SIZE - 1][koniec].setBackground(Color.YELLOW);
+                cellBlock[SIZE - 2][koniec] = 1;
+                cellBlock[SIZE - 1][koniec] = 1;
+            }
+        }
+    }
+
+    public void finishTheBoard(){
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if ((cellBlock[i][j] == 0) || cellBlock[i][j] == 2) {
+                    buttons[i][j].setBackground(Color.DARK_GRAY);
+                }
+                else {
+                    buttons[i][j].setBackground(Color.LIGHT_GRAY);
+                }
+            }
+        }
+    }
+
     public void slowDown(int TIME) throws InterruptedException {
         Thread.sleep(TIME);
     }
