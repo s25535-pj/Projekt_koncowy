@@ -5,10 +5,14 @@ import javax.swing.*;
 public class Game extends FillTheBoard implements KeyListener {
 
 	boolean gameHasEnded = true;
+	boolean fistGame = true;
+
 	public static void main(String[] args) throws InterruptedException {
+
 		Game plansza = new Game();
         plansza.createBoard();
-        while(true){
+
+		while(true){
 			if(plansza.gameHasEnded) {
 				START(plansza);
 				plansza.gameHasEnded = false;
@@ -27,9 +31,12 @@ public class Game extends FillTheBoard implements KeyListener {
 		y = 1;
 		x = start;
 		buttons[y][x].setBackground(Color.YELLOW);
-		JFrame listener = new JFrame();
-		listener.addKeyListener(this);
-		listener.setVisible(true);
+		if(fistGame){
+			JFrame listener = new JFrame();
+			listener.addKeyListener(this);
+			listener.setVisible(true);
+			fistGame = false;
+		}
 	}
 
 	public void endGame(){

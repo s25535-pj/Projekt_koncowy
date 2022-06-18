@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board {
 
-    final int SIZE = 41; //TO musi być liczba nieparzysta!
+    final int SIZE = 31; //TO musi być liczba nieparzysta!
     final int TIME = 1;
     final int BOARD_SIZE = 1000;
 
